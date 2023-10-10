@@ -1,0 +1,37 @@
+ip address : are like phone numbers who wouldve thought 
+*********************
+if a device need to comunicate with another device it need an ip address
+in linux bassed systsems we can use the ifconfig command
+if we are using a router (WIFI) it assigns a ip address to the device
+
+most ip address start with 192.168.1.etc between 0 and 255 because of opra in the router
+it always start with that value because of the subnet mask (read down)
+
+    each cobination of numbers between . its called octats
+
+subnet mask : kinda of the street we live in u already know if ;y phone need to talk to ;y
+                computer the subnet can just tell me we are in the same network
+***************************
+
+if u see a 255.255.255.0 that number is locked if it has 255 meaning the ip address
+will always start with 192.168.1.(value) because its 0 in the subnetmask it can be eny
+value ranging between 0 and 255
+
+    we call the locked numbers as the network portion of the ip adress and the 
+    value as host number
+
+
+default gatewat :
+****************************
+
+its the router 
+if eny of the devices wants to talk to eny thing in the internet outside the network it talks
+to default gateway which is the router 192.168.1.1 because the router is the one connected 
+to the internet provider and knows where to go
+
+
+****** ----> first ip address in the network is reserved for the network address and the last for
+the podcast address which tells broadcast then we have default gateway which is the router ip adress
+
+
+there is a ip adress that gets out of the router to the internet which is diffrent then the on in the netzork
