@@ -450,5 +450,5 @@ Feel free to contribute to this guide by submitting pull requests or opening iss
 - Youtube Playlist: [Subnetting Mastery - Practical Networking](https://www.youtube.com/playlist?list=PLIFyRwBY_4bQUE4IB5c4VPRyDoLgOdExE)
 - Youtube video: [Every Networking Concept Explained In 8 Minutes - Privacy Matters](https://www.youtube.com/watch?v=vtUHgkTKju0)
 - Youtube Playlist: [PowerCert Animated Videos - Networking Animated Videos](https://www.youtube.com/playlist?list=PL7zRJGi6nMRzg0LdsR7F3olyLGoBcIvvg)
-- Youtube video: [ - ](https://www.youtube.com/watch?v=p3vaaD9pn9I)
-- Youtube video: [ - ](https://www.youtube.com/watch?v=qiQR5rTSshw)
+- Youtube video: [Networking For Hackers! (Common Network Protocols) - Hacker Joe](https://www.youtube.com/watch?v=p3vaaD9pn9I)
+- Youtube video: [Computer Networking Course - Network Engineering [CompTIA Network+ Exam Prep] - freeCodeCamp.org](https://www.youtube.com/watch?v=qiQR5rTSshw)
