@@ -442,9 +442,9 @@ Feel free to contribute to this guide by submitting pull requests or opening iss
 
 - Youtube video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
 - Youtube video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
+- Youtube video: [How the Internet Works in 9 Minutes - ByteByteGo](https://www.youtube.com/watch?v=sMHzfigUxz4)
 - Youtube Playlist: [How The Internet Works - Code.org](https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7)
 - Youtube video: [Computer Networking in 100 Seconds - FireShip](https://www.youtube.com/watch?v=keeqnciDVOo)
-- Youtube video: [ - ](https://www.youtube.com/watch?v=sMHzfigUxz4)
 - Youtube Playlist: [ - ](https://www.youtube.com/playlist?list=PLIFyRwBY_4bRLmKfP1KnZA6rZbRHtxmXi)
 - Youtube Playlist: [ - ](https://www.youtube.com/playlist?list=PLIFyRwBY_4bQUE4IB5c4VPRyDoLgOdExE)
 - Youtube video: [ - ](https://www.youtube.com/watch?v=vtUHgkTKju0)
