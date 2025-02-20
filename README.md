@@ -440,13 +440,13 @@ Understanding common threats helps in protection:
 
 Feel free to contribute to this guide by submitting pull requests or opening issues for any corrections or additions.
 
-https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7
-https://www.youtube.com/watch?v=TNQsmPf24go
-https://www.youtube.com/watch?v=VPToE8vwKew&t=833s
-https://www.youtube.com/watch?v=keeqnciDVOo
-https://www.youtube.com/watch?v=sMHzfigUxz4
-https://www.youtube.com/playlist?list=PL7zRJGi6nMRzg0LdsR7F3olyLGoBcIvvg
-https://www.youtube.com/playlist?list=PLIFyRwBY_4bRLmKfP1KnZA6rZbRHtxmXi
-https://www.youtube.com/playlist?list=PLIFyRwBY_4bQUE4IB5c4VPRyDoLgOdExE
-https://www.youtube.com/watch?v=p3vaaD9pn9I
-https://www.youtube.com/watch?v=qiQR5rTSshw
+- https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7
+- https://www.youtube.com/watch?v=TNQsmPf24go
+- https://www.youtube.com/watch?v=VPToE8vwKew&t=833s
+- https://www.youtube.com/watch?v=keeqnciDVOo
+- https://www.youtube.com/watch?v=sMHzfigUxz4
+- https://www.youtube.com/playlist?list=PL7zRJGi6nMRzg0LdsR7F3olyLGoBcIvvg
+- https://www.youtube.com/playlist?list=PLIFyRwBY_4bRLmKfP1KnZA6rZbRHtxmXi
+- https://www.youtube.com/playlist?list=PLIFyRwBY_4bQUE4IB5c4VPRyDoLgOdExE
+- https://www.youtube.com/watch?v=p3vaaD9pn9I
+- https://www.youtube.com/watch?v=qiQR5rTSshw
