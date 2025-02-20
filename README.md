@@ -52,6 +52,7 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
   - [Common Network Tools](#common-network-tools)
       - [Diagnostic Tools](#diagnostic-tools)
       - [Monitoring Tools](#monitoring-tools)
+  - [ressources](#ressources)
   - [Contributing](#contributing)
 
 
@@ -436,9 +437,8 @@ Understanding common threats helps in protection:
 - iftop: Bandwidth monitoring
 - nmap: Network scanning
 
-## Contributing
 
-Feel free to contribute to this guide by submitting pull requests or opening issues for any corrections or additions.
+## ressources
 
 - Youtube video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
 - Youtube video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
@@ -452,3 +452,7 @@ Feel free to contribute to this guide by submitting pull requests or opening iss
 - Youtube Playlist: [PowerCert Animated Videos - Networking Animated Videos](https://www.youtube.com/playlist?list=PL7zRJGi6nMRzg0LdsR7F3olyLGoBcIvvg)
 - Youtube video: [Networking For Hackers! (Common Network Protocols) - Hacker Joe](https://www.youtube.com/watch?v=p3vaaD9pn9I)
 - Youtube video: [Computer Networking Course - Network Engineering [CompTIA Network+ Exam Prep] - freeCodeCamp.org](https://www.youtube.com/watch?v=qiQR5rTSshw)
+
+## Contributing
+
+Feel free to contribute to this guide by submitting pull requests or opening issues for any corrections or additions.
