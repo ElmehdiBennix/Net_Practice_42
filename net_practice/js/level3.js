@@ -2,9 +2,9 @@
 var level = 3;
 
 var hosts = [
-    {'id':'A', 'type':'client', 'name':'Host A', 'geometry':'200x220+700+800', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'B', 'type':'client', 'name':'Host B', 'geometry':'200x220+600+200', 'img':'host.png', 'labelpos':'180,30'},
-    {'id':'C', 'type':'client', 'name':'Host C', 'geometry':'200x200+200+500', 'img':'host.png', 'labelpos':'-150,150'},
+    {'id':'A', 'type':'host', 'name':'Host A', 'geometry':'200x220+700+800', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'B', 'type':'host', 'name':'Host B', 'geometry':'200x220+600+200', 'img':'host.png', 'labelpos':'180,30'},
+    {'id':'C', 'type':'host', 'name':'Host C', 'geometry':'200x200+200+500', 'img':'host.png', 'labelpos':'-150,150'},
     {'id':'S', 'type':'switch', 'name':'Switch-1', 'geometry':'150x150+600+500', 'img':'switch.png', 'labelpos':'80,110'}
 ];
 

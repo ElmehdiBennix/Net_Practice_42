@@ -180,7 +180,7 @@ function show_ifs(root, itf)
 	newelem.style.left = (itf['h']['x']+itf['dx'])+'px';
 	if (itf['ip_edit'] == 'true') ip_active = ''; else ip_active = 'disabled';
 	if (itf['mask_edit'] == 'true') mask_active = ''; else mask_active = 'disabled';
-	newelem.innerHTML = 'Interface '+itf['if']+'<br />IP : <input size=15 type=text id=ip_'+itf['if']+' value="'+itf['ip']+'" '+ip_active+'><br />Mask : <input size=15 type=text id=mask_'+itf['if']+' value="'+itf['mask']+'" '+mask_active+'>';
+	newelem.innerHTML = '<table class=if_tab><tr><td colspan=3 style="text-align:center;">interface '+itf['if']+'</td></tr><tr><td>IP</td><td> : </td><td><input size=15 type=text id=ip_'+itf['if']+' value="'+itf['ip']+'" '+ip_active+'><td></tr><tr><td>Mask</td><td> : </td><td><input size=15 type=text id=mask_'+itf['if']+' value="'+itf['mask']+'" '+mask_active+'></td></tr></table>';
 	root.appendChild(newelem);
     }
 }
@@ -215,21 +215,20 @@ function draw_links(root, l)
 function prep_goals(g)
 {
     if (!g['id']) err("goals", "id");
-    if (!g['type']) err("goals "+g['id'], "type");
-    if (g['type'] == 'reach')
-    {
-	if (!g['id1']) err("goals "+g['id'], "id1");
-	if (!g['id2']) err("goals "+g['id'], "id2");
-	hosts.forEach(h => {if (h['id'] == g['id1']) g['h1'] = h});
-	hosts.forEach(h => {if (h['id'] == g['id2']) g['h2'] = h});
-    }
-    if (g['type'] == 'reach_if')
-    {
-	if (!g['if_id1']) err("goals "+g['id'], "if_id1");
-	if (!g['if_id2']) err("goals "+g['id'], "if_id2");
-	ifs.forEach(itf => {if (itf['if'] == g['if_id1']) { g['h1'] = itf['h']; g['if1'] = itf;}});
-	ifs.forEach(itf => {if (itf['if'] == g['if_id2']) { g['h2'] = itf['h']; g['if2'] = itf;}});
-    }
+
+    if (g['if_id1'])
+	ifs.forEach(itf => { if (itf['if'] == g['if_id1']) { g['h1'] = itf['h']; g['src'] = g['if_id1']; g['src_type'] = 'if'; g['src_name'] = 'interface';}});
+    if (!g['src'] && g['id1'])
+	hosts.forEach(h => { if (h['id'] == g['id1']) { g['h1'] = h; g['src'] = g['id1']; g['src_type'] = 'hid'; g['src_name'] = 'host';}});
+    if (!g['src'])
+	err("goals "+g['id'], "id1/if_id1");
+
+    if (g['if_id2'])
+	ifs.forEach(itf => { if (itf['if'] == g['if_id2']) { g['h2'] = itf['h']; g['dst'] = g['if_id2']; g['dst_type'] = 'if'; g['dst_name'] = 'interface';}});
+    if (!g['dst'] && g['id2'])
+	hosts.forEach(h => { if (h['id'] == g['id2']) { g['h2'] = h; g['dst'] = g['id2']; g['dst_type'] = 'hid'; g['dst_name'] = 'host';}});
+    if (!g['dst'])
+	err("goals "+g['id'], "id2/if_id2");
 }
 
 
@@ -281,17 +280,15 @@ function show_goals(g)
     g_sim_logs += '******* Goal ID '+g['id']+' ********\n';
     var div = document.getElementById("goals_id");
     div.innerHTML += 'Goal '+g['id']+' : ';
-    if (g['type'] == 'reach')
-    {
-	var obj = sim_goal(g);
-	div.innerHTML += '<i>'+g['h1']['name']+'</i> need to communicate with <i>'+g['h2']['name']+'</i> - Status : '+obj.text;
-    }
-    if (g['type'] == 'reach_if')
-    {
-	var obj = sim_goal(g);
-	div.innerHTML += 'Interface <i>'+g['if1']['if']+'</i> need to communicate with interface <i>'+g['if2']['if']+'</i> - Status : '+obj.text;
-    }
-    div.innerHTML += '<br />\n';
+
+    var obj = sim_goal(g);
+    src_txt = g['src'];
+    if (g['src_type'] == 'hid')
+	src_txt = g['h1']['name'];
+    dst_txt = g['dst'];
+    if (g['dst_type'] == 'hid')
+	dst_txt = g['h2']['name'];
+    div.innerHTML += '<i>'+g['src_name']+" <b>"+src_txt+'</b></i> needs to communicate with <i>'+g['dst_name']+" <b>"+dst_txt+'</b></i> - Status : '+obj.text+'<br />\n';
     return (obj.status);
 }
 

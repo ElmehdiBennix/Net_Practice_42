@@ -2,10 +2,10 @@
 var level = 10;
 
 var hosts = [
-    {'id':'H1', 'type':'client', 'name':'Host one', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'H2', 'type':'client', 'name':'Host two', 'geometry':'200x220+800+200', 'img':'host.png', 'labelpos':'180,30'},
-    {'id':'H3', 'type':'client', 'name':'Host three', 'geometry':'200x220+600+1200', 'img':'host.png', 'labelpos':'180,100'},
-    {'id':'H4', 'type':'client', 'name':'Host four', 'geometry':'200x220+100+1200', 'img':'host.png', 'labelpos':'180,100'},
+    {'id':'H1', 'type':'host', 'name':'Host one', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'H2', 'type':'host', 'name':'Host two', 'geometry':'200x220+800+200', 'img':'host.png', 'labelpos':'180,30'},
+    {'id':'H3', 'type':'host', 'name':'Host three', 'geometry':'200x220+600+1200', 'img':'host.png', 'labelpos':'180,100'},
+    {'id':'H4', 'type':'host', 'name':'Host four', 'geometry':'200x220+100+1200', 'img':'host.png', 'labelpos':'180,100'},
     {'id':'R1', 'type':'router', 'name':'Router one', 'geometry':'200x200+400+500', 'img':'router.png', 'labelpos':'-150,150'},
     {'id':'R2', 'type':'router', 'name':'Router two', 'geometry':'200x200+400+900', 'img':'router.png', 'labelpos':'-30,170'},
     {'id':'I', 'type':'internet', 'name':'Internet', 'geometry':'200x240+100+200', 'img':'internet.png', 'labelpos':'-50,200'},

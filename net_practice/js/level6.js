@@ -2,7 +2,7 @@
 var level = 6;
 
 var hosts = [
-    {'id':'A', 'type':'client', 'name':'webserv.non-real.com', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'A', 'type':'host', 'name':'webserv.non-real.com', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
     {'id':'R', 'type':'router', 'name':'gate.non-real.com', 'geometry':'200x200+400+500', 'img':'router.png', 'labelpos':'-150,150'},
     {'id':'I', 'type':'internet', 'name':'Internet', 'geometry':'200x240+100+200', 'img':'internet.png', 'labelpos':'-50,200'},
     {'id':'S', 'type':'switch', 'name':'sw-1.non-real.com', 'geometry':'150x150+800+500', 'img':'switch.png', 'labelpos':'80,110'}
@@ -21,7 +21,7 @@ var ifs = [
     {'if':'R1', 'hid':'R', 'ip':'[a].[b].[c].254', 'mask':'255.255.255.128', 'ip_edit':'true', 'mask_edit':'false', 'type':'std', 'pos':'190,10'},
     {'if':'R2', 'hid':'R', 'ip':'163.172.250.12', 'mask':'255.255.255.240', 'ip_edit':'false', 'mask_edit':'false', 'type':'std', 'pos':'-150,0'},
     {'if':'S1', 'hid':'S', 'ip':'0.0.0.0', 'mask':'/32', 'ip_edit':'false', 'mask_edit':'false', 'pos':'0,0', 'type':'hidden'},
-    {'if':'Somewhere on the Net', 'hid':'I', 'ip':'8.8.8.8', 'mask':'/16', 'ip_edit':'false', 'mask_edit':'false', 'pos':'0,-50', 'type':'std'},
+    {'if':'Somewhere on the Net', 'hid':'I', 'ip':'8.8.8.8', 'mask':'/16', 'ip_edit':'false', 'mask_edit':'false', 'pos':'0,-50', 'type':'hidden'},
     {'if':'I1', 'hid':'I', 'ip':'163.172.250.1', 'mask':'/28', 'ip_edit':'false', 'mask_edit':'false', 'pos':'0,0', 'type':'hidden'}
 ];
 
@@ -33,5 +33,5 @@ var links = [
 ];
 
 var goals = [
-    {'id':'1', 'type':'reach_if', 'if_id1':'A1', 'if_id2':'Somewhere on the Net'}
+    {'id':'1', 'id1':'A', 'if_id2':'Somewhere on the Net'}
 ];

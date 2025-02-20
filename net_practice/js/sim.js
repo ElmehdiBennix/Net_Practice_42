@@ -260,76 +260,22 @@ function rec_route(ip_dest, local_target, input_itf, h)   // return array of des
 
 
 
-function sim_reach(g)
+function sim_reach_gen(g)
 {
-    my_console_log("check reach : "+g['id1']+" -> "+g['id2']);
+    my_console_log("check reach "+g['dst_name']+" : "+g['src']+" -> "+g['dst']);
     var ret = [];
     var i;
     var itf_ip;
     for (i = 0; i < ifs.length; i++)
     {
-	if (g['id2'] == ifs[i]['hid'])
-	{
-	    visited_host = [];
-	    if ((itf_ip = get_if_ip(ifs[i])) === null)
-		g_sim_logs += "on interface "+ifs[i]['if']+": invalid IP\n";
-	    else
-	    {
-		g_sim_logs +="forward way : "+g['id1']+" -> "+g['id2']+" ("+get_if_ip_str(ifs[i])+")\n";
-		ret = ret.concat(rec_route(itf_ip, 0, null, g['h1']));
-	    }
-	    if (ret.length > 0)
-		break;     // if one interface matches, that's enough - if ret > 1 it's because another host matches
-	}
-    }
-    if (ret.length <= 0) return ({text:'KO - No forward way, try again ...', status:0});
-    if (ret.length > 1) return ({text:'KO - Multiple destination hosts match ... ', status:0});
-    if (ret[0]['hid'] != g['id2']) return ({text:'KO - Correct IP reached but on wrong host, try again ...', status:0});
-    
-    // now reverse way
-
-    my_console_log("check reach : "+g['id2']+" -> "+g['id1']);
-    ret = [];
-    for (i = 0; i < ifs.length; i++)
-    {
-	if (g['id1'] == ifs[i]['hid'])
-	{
-	    visited_host = [];
-	    if ((itf_ip = get_if_ip(ifs[i])) === null)
-                g_sim_logs += "on interface "+ifs[i]['if']+": invalid IP\n";
-            else
-            {
-                g_sim_logs +="reverse way : "+g['id2']+" -> "+g['id1']+" ("+get_if_ip_str(ifs[i])+")\n";
-                ret = ret.concat(rec_route(itf_ip, 0, null, g['h2']));
-            }
-            if (ret.length > 0)
-                break;     // if one interface matches, that's enough - if ret > 1 it's because another host matches
-	}
-    }
-    if (ret.length <= 0) return ({text:'KO - No reverse way, try again ...', status:0});
-    if (ret.length > 1) return ({text:'KO - Multiple origin hosts match ... ', status:0});
-    if (ret[0]['hid'] != g['id1']) return ({text:'KO - Correct IP reached but on wrong host, try again ...', status:0});
-    
-    return ({text:'OK - Congratulations !!', status:1});
-}
-
-
-function sim_reach_if(g)
-{
-    my_console_log("check reach interface : "+g['if_id1']+" -> "+g['if_id2']);
-    var ret = [];
-    var i;
-    var itf_ip;
-    for (i = 0; i < ifs.length; i++)
-    {
-	if (g['if_id2'] == ifs[i]['if'])
+	if (g['dst'] == ifs[i][g['dst_type']])
 	{
 	    visited_host = [];
 	    if ((itf_ip = get_if_ip(ifs[i])) === null)
 		g_sim_logs += "on inerface "+ifs[i]['if']+": invalid IP\n";
 	    else
 	    {
-		g_sim_logs +="forward way : "+g['if_id1']+" -> "+g['if_id2']+" ("+get_if_ip_str(ifs[i])+")\n";
+		g_sim_logs +="forward way : "+g['src']+" -> "+g['dst']+" ("+get_if_ip_str(ifs[i])+")\n";
 		ret = ret.concat(rec_route(itf_ip, 0, null, g['h1']));
 	    }
 	    if (ret.length > 0)
@@ -338,22 +284,22 @@ function sim_reach_if(g)
     }
     if (ret.length <= 0) return ({text:'KO - No forward way, try again ...', status:0});
     if (ret.length > 1) return ({text:'KO - Multiple destination hosts match ... ', status:0});
-    if (ret[0]['if'] != g['if_id2']) return ({text:'KO - Correct IP reached but wrong interface, try again ...', status:0});
+    if (ret[0][g['dst_type']] != g['dst']) return ({text:'KO - Correct IP reached but wrong '+g['dst_name']+', try again ...', status:0});
     
     // now reverse way
 
-    my_console_log("check reach interface : "+g['if_id2']+" -> "+g['if_id1']);
+    my_console_log("check reach "+g['src_name']+" : "+g['dst']+" -> "+g['src']);
     ret = [];
     for (i = 0; i < ifs.length; i++)
     {
-	if (g['if_id1'] == ifs[i]['if'])
+	if (g['src'] == ifs[i][g['src_type']])
 	{
 	    visited_host = [];
 	    if ((itf_ip = get_if_ip(ifs[i])) === null)
                 g_sim_logs += "on interface "+ifs[i]['if']+": invalid IP\n";
             else
             {
-                g_sim_logs +="reverse way : "+g['if_id2']+" -> "+g['if_id1']+" ("+get_if_ip_str(ifs[i])+")\n";
+                g_sim_logs +="reverse way : "+g['dst']+" -> "+g['src']+" ("+get_if_ip_str(ifs[i])+")\n";
                 ret = ret.concat(rec_route(itf_ip, 0, null, g['h2']));
             }
             if (ret.length > 0)
@@ -362,7 +308,7 @@ function sim_reach_if(g)
     }
     if (ret.length <= 0) return ({text:'KO - No reverse way, try again ...', status:0});
     if (ret.length > 1) return ({text:'KO - Multiple origin hosts match ... ', status:0});
-    if (ret[0]['if'] != g['if_id1']) return ({text:'KO - Correct IP reached but wrong interface, try again ...', status:0});
+    if (ret[0][g['src_type']] != g['src']) return ({text:'KO - Correct IP reached but wrong '+g['src_name']+', try again ...', status:0});
     
     return ({text:'OK - Congratulations !!', status:1});
 }
@@ -371,8 +317,10 @@ function sim_reach_if(g)
 
 function sim_goal(g)
 {
-    if (g['type'] == 'reach')
-	return (sim_reach(g));
-    if (g['type'] == 'reach_if')
-	return (sim_reach_if(g));
+    return (sim_reach_gen(g));
+    
+//    if (g['type'] == 'reach')
+//	return (sim_reach(g));
+//    if (g['type'] == 'reach_if')
+//	return (sim_reach_if(g));
 }

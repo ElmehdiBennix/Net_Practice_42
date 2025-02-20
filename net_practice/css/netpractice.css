@@ -93,6 +93,9 @@ div {
     text-align:center;
 }
 
+.if_tab {
+    border-collapse: collapse;
+}
 
 /* interface div */
 .itf_div {

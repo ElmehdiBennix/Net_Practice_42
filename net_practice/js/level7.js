@@ -2,8 +2,8 @@
 var level = 7;
 
 var hosts = [
-    {'id':'A', 'type':'client', 'name':'dev.non-real.net', 'geometry':'200x220+900+200', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'C', 'type':'client', 'name':'accounting.non-real.net', 'geometry':'200x220+900+700', 'img':'host.png', 'labelpos':'180,100'},
+    {'id':'A', 'type':'host', 'name':'dev.non-real.net', 'geometry':'200x220+900+200', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'C', 'type':'host', 'name':'accounting.non-real.net', 'geometry':'200x220+900+700', 'img':'host.png', 'labelpos':'180,100'},
     {'id':'R1', 'type':'router', 'name':'tech.non-real.net', 'geometry':'200x200+400+200', 'img':'router.png', 'labelpos':'-280,50'},
     {'id':'R2', 'type':'router', 'name':'adm.non-real.net', 'geometry':'200x200+400+700', 'img':'router.png', 'labelpos':'-30,170'}
 ];

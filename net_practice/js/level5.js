@@ -2,8 +2,8 @@
 var level = 5;
 
 var hosts = [
-    {'id':'A', 'type':'client', 'name':'Machine A', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'B', 'type':'client', 'name':'Machine B', 'geometry':'200x220+800+200', 'img':'host.png', 'labelpos':'180,30'},
+    {'id':'A', 'type':'host', 'name':'Machine A', 'geometry':'200x220+900+800', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'B', 'type':'host', 'name':'Machine B', 'geometry':'200x220+800+200', 'img':'host.png', 'labelpos':'180,30'},
     {'id':'R', 'type':'router', 'name':'The Mighty Router', 'geometry':'200x200+400+500', 'img':'router.png', 'labelpos':'-200,50'}
 ];
 

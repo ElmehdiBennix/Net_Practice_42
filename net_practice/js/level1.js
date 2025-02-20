@@ -2,10 +2,10 @@
 var level = 1;
 
 var hosts = [
-    {'id':'A', 'type':'client', 'name':'my PC', 'geometry':'200x220+250+500', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'B', 'type':'client', 'name':'my little brother\'s computer', 'geometry':'200x220+250+100', 'img':'host.png', 'labelpos':'180,30'},
-    {'id':'C', 'type':'client', 'name':'my Mac', 'geometry':'200x220+700+500', 'img':'host.png', 'labelpos':'0,200'},
-    {'id':'D', 'type':'client', 'name':'my little sister\'s computer', 'geometry':'200x220+700+100', 'img':'host.png', 'labelpos':'180,30'}
+    {'id':'A', 'type':'host', 'name':'my PC', 'geometry':'200x220+250+500', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'B', 'type':'host', 'name':'my little brother\'s computer', 'geometry':'200x220+250+100', 'img':'host.png', 'labelpos':'180,30'},
+    {'id':'C', 'type':'host', 'name':'my Mac', 'geometry':'200x220+700+500', 'img':'host.png', 'labelpos':'0,200'},
+    {'id':'D', 'type':'host', 'name':'my little sister\'s computer', 'geometry':'200x220+700+100', 'img':'host.png', 'labelpos':'180,30'}
 ];
 
 // routes are processed in order, first match only is used => default must be last - KEEP routes before interfaces for random reference
