@@ -52,7 +52,7 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
   - [Common Network Tools](#common-network-tools)
       - [Diagnostic Tools](#diagnostic-tools)
       - [Monitoring Tools](#monitoring-tools)
-  - [ressources](#ressources)
+  - [Ressources](#ressources)
   - [Contributing](#contributing)
 
 
@@ -438,7 +438,7 @@ Understanding common threats helps in protection:
 - nmap: Network scanning
 
 
-## ressources
+## Ressources
 
 - Youtube video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
 - Youtube video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
