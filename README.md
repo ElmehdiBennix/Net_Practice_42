@@ -35,12 +35,25 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
         - [Layer Independence](#layer-independence)
         - [Historical Context](#historical-context)
         - [Implementation](#implementation)
-- [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
+- [IP Addressing](#ip-addressing)
   - [IPv4 vs IPv6](#ipv4-vs-ipv6)
+- [Understanding IPv4 Addresses and Subnet Masks](#understanding-ipv4-addresses-and-subnet-masks)
+  - [IPv4 Address Fundamentals](#ipv4-address-fundamentals)
+  - [Understanding Network and Host Portions](#understanding-network-and-host-portions)
+  - [Subnet Masks](#subnet-masks)
+    - [Example Calculation](#example-calculation)
+  - [CIDR Notation](#cidr-notation)
+  - [Network Ranges and Host Addresses](#network-ranges-and-host-addresses)
+- [Network Devices](#network-devices)
+    - [Switches: Local Network Connection](#switches-local-network-connection)
+    - [Routers: Inter-network Communication](#routers-inter-network-communication)
+  - [Routing and Routing Tables](#routing-and-routing-tables)
+    - [Destination Field](#destination-field)
+    - [Next Hop Field](#next-hop-field)
 - [Understanding Public vs Private IP Addresses](#understanding-public-vs-private-ip-addresses)
   - [The Apartment Building Analogy](#the-apartment-building-analogy)
-  - [Public IP Addresses](#public-ip-addresses)
-  - [Private IP Addresses](#private-ip-addresses)
+  - [Public IP Addresses (rework)](#public-ip-addresses-rework)
+  - [Private IP Addresses (rework)](#private-ip-addresses-rework)
   - [How They Work Together](#how-they-work-together)
   - [Advantages of This System](#advantages-of-this-system)
 - [Understanding DHCP and Network Address Translation (NAT)](#understanding-dhcp-and-network-address-translation-nat)
@@ -60,15 +73,6 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
       - [IP Address Conservation](#ip-address-conservation)
       - [Network Flexibility](#network-flexibility)
     - [Real-World Example](#real-world-example)
-- [Network Devices](#network-devices)
-    - [Switches: Local Network Connection](#switches-local-network-connection)
-    - [Routers: Inter-network Communication](#routers-inter-network-communication)
-  - [Routing and Routing Tables](#routing-and-routing-tables)
-    - [Destination Field](#destination-field)
-    - [Next Hop Field](#next-hop-field)
-- [Network Address Calculation](#network-address-calculation)
-- [CIDR Notation](#cidr-notation)
-  - [Network Ranges and Host Addresses](#network-ranges-and-host-addresses)
 - [DNS and Domain Names: The Internet's Phone Book](#dns-and-domain-names-the-internets-phone-book)
     - [Domain Name System](#domain-name-system)
     - [DNS Hierarchy](#dns-hierarchy)
@@ -317,13 +321,158 @@ OSI Model (7 Layers)     TCP/IP Model (4 Layers)
 - OSI serves primarily as a reference model for understanding networking
 - TCP/IP protocols are more widely used and supported
 
-# IP Addressing and Network Layer
+# IP Addressing
 
 IP addressing operates at the network layer and provides the fundamental addressing scheme for all internet communications.
 
 ## IPv4 vs IPv6
 
-IPv4 uses 32-bit addresses, written as four octets (e.g., 192.168.1.1). While IPv4 is still widely used, its approximately 4.3 billion possible addresses are insufficient for modern needs. This led to the development of IPv6, which uses 128-bit addresses and provides an effectively unlimited address space.
+IPv4 uses 32-bit addresses, written as four octets **(e.g., 192.168.1.1)**. While IPv4 is still widely used, its approximately 4.3 billion possible addresses are insufficient for modern needs. This led to the development of IPv6 **(e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334)**, which uses 128-bit addresses and provides an effectively unlimited address space.
+
+# Understanding IPv4 Addresses and Subnet Masks
+
+## IPv4 Address Fundamentals
+An IP address is a 32-bit number typically written in four octets (groups of 8 bits), separated by dots. For example: `192.168.1.100`
+
+Each number in the address can range from 0 to 255, representing one byte (8 bits) of the address. When we work with IP addresses, we often need to think about them in binary form:
+
+```
+192.168.1.100 in binary:
+11000000.10101000.00000001.01100100
+```
+
+## Understanding Network and Host Portions
+- The network portion - identifies which network the device belongs to
+- The host portion - identifies the specific device on that network
+
+But how do we know where the network portion ends and the host portion begins? This is where subnet masks come in.
+
+## Subnet Masks
+A subnet mask is a 32-bit number that acts like a template, showing us which parts of an IP address belong to the network and which parts identify the host. Here's how it works:
+
+- Bits set to 1 in the subnet mask indicate "network portion"
+- Bits set to 0 in the subnet mask indicate "host portion"
+
+### Example Calculation
+Let's work through calculating a network address:
+
+```
+IP Address:  192.168.1.100
+Subnet Mask: 255.255.255.0
+
+In binary:
+IP:   11000000.10101000.00000001.01100100
+Mask: 11111111.11111111.11111111.00000000
+```
+
+To find the network address, we perform a bitwise AND operation between the IP and the mask:
+
+```
+IP:      11000000.10101000.00000001.01100100
+Mask:    11111111.11111111.11111111.00000000
+Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
+```
+
+In this example:
+- Network portion: 192.168.1
+- Host portion: The last number (100)
+- Network address: 192.168.1.0
+
+## CIDR Notation
+
+CIDR (Classless Inter-Domain Routing) provides a more concise way to express subnet masks:
+- Written as a forward slash followed by the number of network bits
+- Example: /24 is equivalent to 255.255.255.0
+- Example: /16 is equivalent to 255.255.0.0
+
+```plaintext
++----------------+------------------+----------------+--------------+
+|  CIDR Notation |  Subnet Mask     |  # of Hosts    |  Block Size  |
++----------------+------------------+----------------+--------------+
+|     /30       |  255.255.255.252  |        2       |       4      |
+|     /29       |  255.255.255.248  |        6       |       8      |
+|     /28       |  255.255.255.240  |       14       |      16      |
+|     /27       |  255.255.255.224  |       30       |      32      |
+|     /26       |  255.255.255.192  |       62       |      64      |
+|     /25       |  255.255.255.128  |      126       |     128      |
+|     /24       |  255.255.255.0    |      254       |     256      |
+|     /23       |  255.255.254.0    |      510       |     512      |
+|     /22       |  255.255.252.0    |     1022       |    1024      |
+|     /21       |  255.255.248.0    |     2046       |    2048      |
+|     /20       |  255.255.240.0    |     4094       |    4096      |
+|     /19       |  255.255.224.0    |     8190       |    8192      |
+|     /18       |  255.255.192.0    |    16382       |   16384      |
+|     /17       |  255.255.128.0    |    32766       |   32768      |
+|     /16       |  255.255.0.0      |    65534       |   65536      |
+|     /15       |  255.254.0.0      |   131070       |  131072      |
+|     /14       |  255.252.0.0      |   262142       |  262144      |
+|     /13       |  255.248.0.0      |   524286       |  524288      |
+|     /12       |  255.240.0.0      |  1048574       | 1048576      |
+|     /11       |  255.224.0.0      |  2097150       | 2097152      |
+|     /10       |  255.192.0.0      |  4194302       | 4194304      |
+|     /9        |  255.128.0.0      |  8388606       | 8388608      |
+|     /8        |  255.0.0.0        | 16777214       | 16777216     |
++----------------+------------------+----------------+--------------+
+
+Legend:
+- CIDR Notation: The /X format for subnetting.
+- Subnet Mask: The decimal form of the subnet mask.
+- # of Hosts: Usable IPs (total - 2 for network & broadcast).
+- Block Size: Number of total IPs in each subnet.
+
+Quick Tip:
+  Block Size = 2^(32 - CIDR)
+  Hosts = Block Size - 2 (for network & broadcast)
+```
+
+## Network Ranges and Host Addresses
+
+When working with networks, remember:
+- Network address (all host bits 0) cannot be assigned to hosts
+- Broadcast address (all host bits 1) cannot be assigned to hosts
+- Valid host addresses fall between these two numbers
+
+Example for network 192.168.1.0/24:
+- Network address: 192.168.1.0
+- Broadcast address: 192.168.1.255
+- Valid host range: 192.168.1.1 - 192.168.1.254
+
+Remember these key points when designing networks:
+- Networks connected to different router interfaces must not overlap
+- All devices on the same network must use addresses from the same range
+- When connecting to the internet, avoid using private IP addresses
+
+# Network Devices
+
+### Switches: Local Network Connection
+
+A switch operates at the data link layer and connects devices within the same network. Key characteristics:
+- No IP address of its own
+- Forwards traffic based on MAC addresses
+- Only communicates within its local network
+- Cannot route between different networks
+
+### Routers: Inter-network Communication
+
+Routers are more sophisticated devices that connect different networks. Important features:
+- Has multiple interfaces, each with its own IP address
+- Each interface must be on a different network
+- Makes routing decisions based on IP addresses
+- Maintains routing tables for packet forwarding
+
+## Routing and Routing Tables
+
+Routing tables contain essential information for packet forwarding:
+
+### Destination Field
+- Specifies the target network for packets
+- Can be a specific network address or a default route
+- Default route (0.0.0.0/0) matches any destination
+
+### Next Hop Field
+- IP address of the next router in the path
+- Must be directly reachable (on the same network)
+- Determines the physical path packets will take
 
 # Understanding Public vs Private IP Addresses
 
@@ -333,7 +482,7 @@ Let me explain the key differences between public and private IP addresses using
 
 Think of the internet like a city, and each building has its own unique street address (public IP). Inside an apartment building, each apartment has its own internal unit number (private IP). This helps illustrate how our networks work.
 
-## Public IP Addresses
+## Public IP Addresses (rework)
 
 Public IP addresses are like the building's street address - they must be globally unique and visible to everyone. These addresses have several key characteristics:
 
@@ -346,7 +495,7 @@ Key Properties of Public IPs:
 - Can be static (fixed) or dynamic (changing)
 ```
 
-## Private IP Addresses
+## Private IP Addresses (rework)
 
 Private IP addresses are like apartment numbers within a building. They can be reused in different buildings because they're only meaningful within their own network. The Internet Assigned Numbers Authority (IANA) has reserved specific ranges for private use:
 
@@ -461,142 +610,6 @@ Smart TV        192.168.1.102:5555 →  203.0.113.1:7777
 ```
 
 Each device appears to have direct internet access, but NAT is quietly managing all these connections behind the scenes.
-
-<!-- # Understanding Subnet Masks
-
-A subnet mask is a 32-bit number that separates the network portion from the host portion of an IP address. Let's work through an example to understand this concept:
-
-Consider this IP address and subnet mask:
-```
-IP:   104.198.241.125
-Mask: 255.255.255.128
-```
-
-In binary:
-```
-IP:   01101000.11000110.11110001.01111101
-Mask: 11111111.11111111.11111111.10000000
-```
-
-When we apply the mask (using a bitwise AND operation):
-```
-IP:      01101000.11000110.11110001.01111101
-Mask:    11111111.11111111.11111111.10000000
-Network: 01101000.11000110.11110001.00000000
-```
-
-This gives us a network address of 104.198.241.0 -->
-
-# Network Devices
-
-### Switches: Local Network Connection
-
-A switch operates at the data link layer and connects devices within the same network. Key characteristics:
-- No IP address of its own
-- Forwards traffic based on MAC addresses
-- Only communicates within its local network
-- Cannot route between different networks
-
-### Routers: Inter-network Communication
-
-Routers are more sophisticated devices that connect different networks. Important features:
-- Has multiple interfaces, each with its own IP address
-- Each interface must be on a different network
-- Makes routing decisions based on IP addresses
-- Maintains routing tables for packet forwarding
-
-## Routing and Routing Tables
-
-Routing tables contain essential information for packet forwarding:
-
-### Destination Field
-- Specifies the target network for packets
-- Can be a specific network address or a default route
-- Default route (0.0.0.0/0) matches any destination
-
-### Next Hop Field
-- IP address of the next router in the path
-- Must be directly reachable (on the same network)
-- Determines the physical path packets will take
-
-# Network Address Calculation
-
-To find a network address, follow these steps:
-
-1. Convert IP address and subnet mask to binary
-2. Perform a bitwise AND operation
-3. Convert the result back to decimal
-
-Example with IP 192.168.1.100 and mask 255.255.255.0:
-```
-IP:      11000000.10101000.00000001.01100100
-Mask:    11111111.11111111.11111111.00000000
-Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
-```
-
-# CIDR Notation
-
-CIDR (Classless Inter-Domain Routing) provides a more concise way to express subnet masks:
-- Written as a forward slash followed by the number of network bits
-- Example: /24 is equivalent to 255.255.255.0
-- Example: /16 is equivalent to 255.255.0.0
-
-```plaintext
-+----------------+------------------+----------------+--------------+
-|  CIDR Notation |  Subnet Mask     |  # of Hosts    |  Block Size  |
-+----------------+------------------+----------------+--------------+
-|     /30       |  255.255.255.252  |        2       |       4      |
-|     /29       |  255.255.255.248  |        6       |       8      |
-|     /28       |  255.255.255.240  |       14       |      16      |
-|     /27       |  255.255.255.224  |       30       |      32      |
-|     /26       |  255.255.255.192  |       62       |      64      |
-|     /25       |  255.255.255.128  |      126       |     128      |
-|     /24       |  255.255.255.0    |      254       |     256      |
-|     /23       |  255.255.254.0    |      510       |     512      |
-|     /22       |  255.255.252.0    |     1022       |    1024      |
-|     /21       |  255.255.248.0    |     2046       |    2048      |
-|     /20       |  255.255.240.0    |     4094       |    4096      |
-|     /19       |  255.255.224.0    |     8190       |    8192      |
-|     /18       |  255.255.192.0    |    16382       |   16384      |
-|     /17       |  255.255.128.0    |    32766       |   32768      |
-|     /16       |  255.255.0.0      |    65534       |   65536      |
-|     /15       |  255.254.0.0      |   131070       |  131072      |
-|     /14       |  255.252.0.0      |   262142       |  262144      |
-|     /13       |  255.248.0.0      |   524286       |  524288      |
-|     /12       |  255.240.0.0      |  1048574       | 1048576      |
-|     /11       |  255.224.0.0      |  2097150       | 2097152      |
-|     /10       |  255.192.0.0      |  4194302       | 4194304      |
-|     /9        |  255.128.0.0      |  8388606       | 8388608      |
-|     /8        |  255.0.0.0        | 16777214       | 16777216     |
-+----------------+------------------+----------------+--------------+
-
-Legend:
-- CIDR Notation: The /X format for subnetting.
-- Subnet Mask: The decimal form of the subnet mask.
-- # of Hosts: Usable IPs (total - 2 for network & broadcast).
-- Block Size: Number of total IPs in each subnet.
-
-Quick Tip:
-  Block Size = 2^(32 - CIDR)
-  Hosts = Block Size - 2 (for network & broadcast)
-```
-
-## Network Ranges and Host Addresses
-
-When working with networks, remember:
-- Network address (all host bits 0) cannot be assigned to hosts
-- Broadcast address (all host bits 1) cannot be assigned to hosts
-- Valid host addresses fall between these two numbers
-
-Example for network 192.168.1.0/24:
-- Network address: 192.168.1.0
-- Broadcast address: 192.168.1.255
-- Valid host range: 192.168.1.1 - 192.168.1.254
-
-Remember these key points when designing networks:
-- Networks connected to different router interfaces must not overlap
-- All devices on the same network must use addresses from the same range
-- When connecting to the internet, avoid using private IP addresses
 
 # DNS and Domain Names: The Internet's Phone Book
 
