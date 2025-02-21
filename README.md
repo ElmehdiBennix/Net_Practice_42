@@ -20,9 +20,52 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
     - [Layer 3 - Network Layer](#layer-3---network-layer)
     - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
     - [Layer 1 - Physical Layer](#layer-1---physical-layer)
+- [How Data Flows Through the OSI Model](#how-data-flows-through-the-osi-model)
+  - [Data Flow Process](#data-flow-process)
+- [Understanding TCP/IP and OSI Models](#understanding-tcpip-and-osi-models)
+  - [TCP/IP Model Overview](#tcpip-model-overview)
+  - [The Four Layers of TCP/IP](#the-four-layers-of-tcpip)
+    - [1. Network Access Layer (Link Layer)](#1-network-access-layer-link-layer)
+    - [2. Internet Layer](#2-internet-layer)
+    - [3. Transport Layer](#3-transport-layer)
+    - [4. Application Layer](#4-application-layer)
+  - [How Data Flows Through TCP/IP](#how-data-flows-through-tcpip)
+  - [TCP/IP vs OSI Model Comparison](#tcpip-vs-osi-model-comparison)
+    - [Structure](#structure)
+    - [Key Differences](#key-differences)
+      - [Flexibility and Practical Use](#flexibility-and-practical-use)
+      - [Layer Independence](#layer-independence)
+      - [Historical Context](#historical-context)
+      - [Implementation](#implementation)
   - [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
     - [IPv4 vs IPv6](#ipv4-vs-ipv6)
-    - [Public vs Private Addressing](#public-vs-private-addressing)
+- [Understanding Public vs Private IP Addresses](#understanding-public-vs-private-ip-addresses)
+  - [The Apartment Building Analogy](#the-apartment-building-analogy)
+  - [Public IP Addresses](#public-ip-addresses)
+  - [Private IP Addresses](#private-ip-addresses)
+  - [How They Work Together](#how-they-work-together)
+  - [Advantages of This System](#advantages-of-this-system)
+- [Understanding Network Address Translation (NAT)](#understanding-network-address-translation-nat)
+  - [The Core Concept](#the-core-concept)
+- [Understanding DHCP and Network Address Translation](#understanding-dhcp-and-network-address-translation)
+  - [DHCP Basics](#dhcp-basics)
+  - [The DHCP Process](#the-dhcp-process)
+    - [1. DHCP Discovery](#1-dhcp-discovery)
+    - [2. DHCP Offer](#2-dhcp-offer)
+    - [3. Address Assignment and Configuration](#3-address-assignment-and-configuration)
+  - [Network Address Translation (NAT)](#network-address-translation-nat)
+    - [How Private Addresses Reach the Public Internet](#how-private-addresses-reach-the-public-internet)
+    - [Benefits of This System](#benefits-of-this-system)
+  - [How NAT Actually Works](#how-nat-actually-works)
+  - [Types of NAT](#types-of-nat)
+    - [Static NAT](#static-nat)
+    - [Dynamic NAT](#dynamic-nat)
+    - [Port Address Translation (PAT)](#port-address-translation-pat)
+  - [Why NAT is Important](#why-nat-is-important)
+    - [Security](#security)
+    - [IP Address Conservation](#ip-address-conservation)
+    - [Network Flexibility](#network-flexibility)
+  - [Real-World Example](#real-world-example)
   - [Understanding Subnet Masks](#understanding-subnet-masks)
   - [Network Devices](#network-devices)
     - [Switches: Local Network Connection](#switches-local-network-connection)
@@ -95,14 +138,15 @@ Think of the Presentation layer as a translator. It takes data from the Applicat
 - Data formatting
 
 ### Layer 5 - Session Layer
-The Session layer manages the connections between applications, much like a phone operator managing calls. It:
+The Session layer manages the connections between applications, much like a phone operator managing calls.
+it uses the ports defined in layer 4 to create sockets and sessions between communicating devices/programs/etc It:
 - Establishes, maintains, and terminates connections
 - Handles authentication and authorization
 - Manages dialogue control between systems
 - Provides synchronization points for long data transfers
 
 ### Layer 4 - Transport Layer
-The Transport layer ensures complete data transfer, like a postal service's tracking system. Here we find:
+The Transport layer ensures complete data transfer via ports, like a postal service's tracking system. Here we find:
 - TCP (Transmission Control Protocol)
   - Connection-oriented
   - Guarantees delivery
@@ -133,35 +177,158 @@ The Physical layer deals with the actual physical transmission of data, like the
 - Pin layouts
 - Physical network designs
 
+# How Data Flows Through the OSI Model
 
-<!-- ## mac adress
+Let me walk you through how data travels through each layer of the OSI model, focusing on what happens when you send and receive data. I'll use the example of sending an email to make it more concrete.
 
-## ip adress
+## Data Flow Process
 
-## ports
+```plaintext
+Sending Process (Data Encapsulation):
 
-## sockets
+7. Application Layer: Creates email content and commands
+   (Your email text + SMTP commands)
+↓
+6. Presentation Layer: Formats and encrypts if needed
+   (Converts to ASCII, compresses, encrypts)
+↓
+5. Session Layer: Establishes communication session
+   (Opens and maintains dialog between computers)
+↓
+4. Transport Layer: Segments data and ensures reliability
+   (Breaks message into manageable chunks, adds sequence numbers)
+↓
+3. Network Layer: Adds logical addressing and routing
+   (Adds source and destination IP addresses)
+↓
+2. Data Link Layer: Frames data for transmission
+   (Adds MAC addresses, error checking)
+↓
+1. Physical Layer: Converts to binary signals
+   (Transmits as electrical, light, or radio signals)
 
-## TCP (Transmission Control Protocol)
 
-TCP operates at the transport layer of the network stack. To understand its role, let's look at how data moves through the network:
+Receiving Process (Data De-encapsulation):
 
-TCP provides critical features for reliable data transmission:
-- Establishes a connection before data transfer begins
-- Breaks large data into manageable packets
-- Ensures packets arrive in the correct order
-- Verifies data integrity
-- Handles retransmission of lost packets
+1. Physical Layer: Receives binary signals
+   (Converts signals back to digital data)
+↓
+2. Data Link Layer: Checks for transmission errors
+   (Verifies frame integrity, removes MAC addresses)
+↓
+3. Network Layer: Processes IP addresses
+   (Confirms correct destination, removes IP headers)
+↓
+4. Transport Layer: Reassembles segments
+   (Orders segments, requests retransmission if needed)
+↓
+5. Session Layer: Manages dialog control
+   (Maintains and closes communication session)
+↓
+6. Presentation Layer: Decrypts and formats
+   (Decrypts data, converts to usable format)
+↓
+7. Application Layer: Delivers to email application
+   (Final data presented to user's email client)
+```
 
-This reliability makes TCP ideal for applications where accuracy is crucial, like web browsing, email, and file transfers.
+Each layer adds its own header during encapsulation (sending), and these headers are removed in reverse order during de-encapsulation (receiving). Think of it like putting a letter inside increasingly larger envelopes, each with its own addressing and instructions, then opening them in reverse order at the destination.
 
-## UDP
+# Understanding TCP/IP and OSI Models
 
+## TCP/IP Model Overview
+The TCP/IP model, also known as the Internet Protocol Suite, is the fundamental framework that enables internet communications. Think of it as the postal service of the digital world, where each layer handles specific aspects of delivering your data from one point to another.
 
- -->
+## The Four Layers of TCP/IP
 
+### 1. Network Access Layer (Link Layer)
+This is like the local postal worker who physically delivers mail to your doorstep. It handles the physical transmission of data, including:
+- Converting data into electrical signals, light, or radio waves
+- Managing physical addressing (MAC addresses)
+- Coordinating when devices can transmit on shared media
+- Error detection at the hardware level
 
+### 2. Internet Layer
+Think of this as the national sorting centers that determine the best route for packages. This layer:
+- Handles logical addressing (IP addresses)
+- Routes packets between networks
+- Fragments large messages into smaller packets when needed
+- Implements the Internet Protocol (IP)
 
+### 3. Transport Layer
+This layer acts like the tracking and delivery confirmation system. It provides:
+- End-to-end communication management
+- Reliable data delivery (TCP) or faster, less reliable delivery (UDP)
+- Flow control to prevent overwhelming receivers
+- Error checking and recovery at the protocol level
+
+### 4. Application Layer
+This is like the various types of mail services available (regular mail, certified mail, express delivery). It includes:
+- Protocols for specific services (HTTP, FTP, SMTP, etc.)
+- User interfaces and applications
+- Data formatting and encryption
+
+## How Data Flows Through TCP/IP
+
+When you send data (like loading a webpage):
+
+```plaintext
+Sending Process:
+Application Layer: Your browser requests a webpage (HTTP)
+↓
+Transport Layer: TCP establishes connection, breaks data into segments
+↓
+Internet Layer: IP adds addressing, determines routing
+↓
+Network Access Layer: Converts to physical signals and transmits
+
+Receiving Process:
+Network Access Layer: Receives signals, converts to digital data
+↓
+Internet Layer: Verifies addressing, reassembles packets
+↓
+Transport Layer: Ensures all segments arrived, orders them correctly
+↓
+Application Layer: Presents webpage to user
+```
+
+## TCP/IP vs OSI Model Comparison
+
+Let's compare these two important networking models:
+
+### Structure
+```plaintext
+OSI Model (7 Layers)     TCP/IP Model (4 Layers)
+7. Application    →      4. Application
+6. Presentation   →
+5. Session        →
+4. Transport      →      3. Transport
+3. Network        →      2. Internet
+2. Data Link      →      1. Network Access
+1. Physical       →
+```
+
+### Key Differences
+
+#### Flexibility and Practical Use
+- TCP/IP is more practical and widely implemented
+- OSI is more theoretical and helps in understanding network concepts
+- TCP/IP combines several OSI layers for efficiency
+
+#### Layer Independence
+- OSI has clear, separate functions for each layer
+- TCP/IP has some overlapping functions between layers
+- OSI is more rigid, while TCP/IP is more flexible
+
+#### Historical Context
+- TCP/IP was developed first and drove internet development
+- OSI was developed later as a more comprehensive, theoretical model
+- TCP/IP evolved from practical needs, while OSI was designed as an ideal standard
+
+#### Implementation
+- TCP/IP is the actual protocol used on the internet
+- OSI serves primarily as a reference model for understanding networking
+- TCP/IP protocols are more widely used and supported
 
 
 ## IP Addressing and Network Layer
@@ -172,18 +339,177 @@ IP addressing operates at the network layer and provides the fundamental address
 
 IPv4 uses 32-bit addresses, written as four octets (e.g., 192.168.1.1). While IPv4 is still widely used, its approximately 4.3 billion possible addresses are insufficient for modern needs. This led to the development of IPv6, which uses 128-bit addresses and provides an effectively unlimited address space.
 
-### Public vs Private Addressing
+# Understanding Public vs Private IP Addresses
 
-Networks use two types of IP addresses:
+Let me explain the key differences between public and private IP addresses using an analogy that might help make this clearer.
 
-Private IP ranges (reserved for internal networks):
+## The Apartment Building Analogy
+
+Think of the internet like a city, and each building has its own unique street address (public IP). Inside an apartment building, each apartment has its own internal unit number (private IP). This helps illustrate how our networks work.
+
+## Public IP Addresses
+
+Public IP addresses are like the building's street address - they must be globally unique and visible to everyone. These addresses have several key characteristics:
+
+```plaintext
+Key Properties of Public IPs:
+- Must be unique across the entire internet
+- Assigned by Internet Service Providers (ISPs)
+- Directly accessible from the internet
+- Limited in quantity
+- Can be static (fixed) or dynamic (changing)
 ```
-192.168.0.0 - 192.168.255.255 (65,536 addresses)
-172.16.0.0 - 172.31.255.255   (1,048,576 addresses)
-10.0.0.0 - 10.255.255.255     (16,777,216 addresses)
+
+## Private IP Addresses
+
+Private IP addresses are like apartment numbers within a building. They can be reused in different buildings because they're only meaningful within their own network. The Internet Assigned Numbers Authority (IANA) has reserved specific ranges for private use:
+
+```plaintext
+Private IP Ranges:
+192.168.0.0 - 192.168.255.255  (65,536 addresses)
+172.16.0.0 - 172.31.255.255    (1,048,576 addresses)
+10.0.0.0 - 10.255.255.255      (16,777,216 addresses)
 ```
 
-Public IP addresses are globally routable and must be unique across the internet. Any device directly accessible from the internet must have a public IP address.
+## How They Work Together
+
+When you're at home, your devices (phones, laptops, smart TVs) each get a private IP address from your router. Your router has one public IP address assigned by your ISP. When your devices need to access the internet, the router performs Network Address Translation (NAT):
+
+1. Your device (private IP: 192.168.1.100) wants to visit a website
+2. The request goes to your router
+3. The router replaces your private IP with its public IP
+4. The website responds to your router's public IP
+5. Your router remembers which device made the request and forwards the response
+
+## Advantages of This System
+
+This dual-address system provides several benefits:
+
+1. **Security**: Your devices' private IP addresses are hidden from the internet, adding a layer of protection
+2. **Address Conservation**: Multiple devices can share one public IP address
+3. **Network Management**: Organizations can use consistent internal addressing across different locations
+4. **Flexibility**: You can change your ISP (and public IP) without reconfiguring internal devices
+
+# Understanding Network Address Translation (NAT)
+
+Network Address Translation (NAT) is like having a smart receptionist for your network who knows how to handle both internal and external communications. Let me explain how this fascinating system works and why it's so important.
+
+## The Core Concept
+
+Imagine you're in a large office building where internal phone extensions are just 4 digits (like 1234), but to call the outside world, you need a full phone number. When you dial out, the office phone system automatically adds the necessary area code and prefix. NAT works similarly with IP addresses.
+
+# Understanding DHCP and Network Address Translation
+
+## DHCP Basics
+DHCP (Dynamic Host Configuration Protocol) plays a crucial role in managing private networks by automatically assigning IP addresses to devices. This process ensures efficient network organization and connectivity.
+
+## The DHCP Process
+
+### 1. DHCP Discovery
+When a new device connects to your network, it initiates what's known as the DHCP discovery process. The device broadcasts a special message called a "DHCP DISCOVER" packet across the network. This is similar to walking into a hotel and requesting a room - you're essentially announcing "I need an address to stay at!"
+
+### 2. DHCP Offer
+The network's DHCP server (typically running on your router) receives this discovery message and responds with a "DHCP OFFER." This offer includes:
+- A proposed private IP address (e.g., 192.168.1.100)
+- Lease duration (how long the device can use this address)
+- Additional network configuration details (subnet mask, default gateway, DNS servers)
+
+### 3. Address Assignment and Configuration
+After the device accepts the offer, the DHCP server confirms the assignment and records it in its lease table. The device now has all the information it needs to communicate on the local network.
+
+## Network Address Translation (NAT)
+
+### How Private Addresses Reach the Public Internet
+When your device needs to communicate with the internet, NAT takes over:
+
+```plaintext
+Internal Request Flow:
+Device (192.168.1.100) → Router → Internet
+                         |
+                         |- Translates private IP to public IP
+                         |- Maintains translation table
+                         |- Tracks ongoing connections
+
+Return Traffic Flow:
+Internet → Router → Device (192.168.1.100)
+           |
+           |- Consults translation table
+           |- Routes response to correct private IP
+```
+
+### Benefits of This System
+This architecture provides several advantages:
+- Security through address hiding
+- Conservation of public IP addresses
+- Simplified internal network management
+- Ability to change internet service providers without reconfiguring internal devices
+
+Would you like me to elaborate on any particular aspect of this system?
+
+## How NAT Actually Works
+
+When a device on your private network wants to communicate with the internet, NAT performs a sophisticated translation process:
+
+```plaintext
+Step 1: Internal Request
+Your Computer (192.168.1.100) → Makes web request to Google.com
+
+Step 2: NAT Translation
+Router creates a NAT table entry:
+Source IP: 192.168.1.100:3333 → Public IP 203.0.113.1:5555
+
+Step 3: Packet Modification
+Router changes the packet header:
+- Original: From 192.168.1.100:3333
+- Modified: From 203.0.113.1:5555
+
+Step 4: Response Handling
+When Google responds to 203.0.113.1:5555
+Router checks NAT table and forwards to 192.168.1.100:3333
+```
+
+## Types of NAT
+
+Different situations call for different types of NAT:
+
+### Static NAT
+Like having a dedicated receptionist for each person. It creates a one-to-one mapping between a private and public IP address. This is often used for servers that need consistent public access.
+
+### Dynamic NAT
+Like having a pool of receptionists who can handle calls as they come in. It maintains a pool of public IP addresses and assigns them as needed to internal devices.
+
+### Port Address Translation (PAT)
+The most common type in home networks. Think of it as one very efficient receptionist who can handle multiple calls by keeping track of both IP addresses and port numbers. This allows many internal devices to share a single public IP address.
+
+## Why NAT is Important
+
+NAT serves several crucial functions in modern networking:
+
+### Security
+By hiding internal IP addresses, NAT creates a natural firewall. Outside systems can't directly initiate connections to internal devices unless specifically configured.
+
+### IP Address Conservation
+Without NAT, we would have run out of IPv4 addresses long ago. By allowing multiple devices to share one public IP, NAT dramatically reduces the number of public IP addresses needed.
+
+### Network Flexibility
+Organizations can merge or restructure their internal networks without having to change their public IP addressing scheme.
+
+## Real-World Example
+
+Let's say you're at home with multiple devices:
+1. Your laptop (192.168.1.100) loads a website
+2. Your phone (192.168.1.101) checks email
+3. Your smart TV (192.168.1.102) streams video
+
+Your router's NAT system might handle this like:
+```plaintext
+Device          Private IP:Port     →  Public IP:Port
+Laptop          192.168.1.100:3333 →  203.0.113.1:5555
+Phone           192.168.1.101:4444 →  203.0.113.1:6666
+Smart TV        192.168.1.102:5555 →  203.0.113.1:7777
+```
+
+Each device appears to have direct internet access, but NAT is quietly managing all these connections behind the scenes.
 
 ## Understanding Subnet Masks
 
@@ -321,22 +647,6 @@ Remember these key points when designing networks:
 - All devices on the same network must use addresses from the same range
 - When connecting to the internet, avoid using private IP addresses
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## DNS and Domain Names: The Internet's Phone Book
 
 The Domain Name System (DNS) converts human-readable domain names into IP addresses, similar to how a phone book converts names into phone numbers.
@@ -437,18 +747,19 @@ Understanding common threats helps in protection:
 
 ## Ressources
 
-- Youtube video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
-- Youtube video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
-- Youtube video: [How the Internet Works in 9 Minutes - ByteByteGo](https://www.youtube.com/watch?v=sMHzfigUxz4)
+- Youtube Video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
+- Youtube Video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
+- Youtube Video: [How the Internet Works in 9 Minutes - ByteByteGo](https://www.youtube.com/watch?v=sMHzfigUxz4)
 - Youtube Playlist: [How The Internet Works - Code.org](https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7)
-- Youtube video: [Computer Networking in 100 Seconds - FireShip](https://www.youtube.com/watch?v=keeqnciDVOo)
+- Youtube Video: [Computer Networking in 100 Seconds - FireShip](https://www.youtube.com/watch?v=keeqnciDVOo)
+- Stackexchange Question: [OSI Model and Networking Protocols Relationship](https://networkengineering.stackexchange.com/questions/6380/osi-model-and-networking-protocols-relationship/6381#6381)
 - Youtube Playlist: [TCP & UDP Masterclass - Practical Networking](https://www.youtube.com/playlist?list=PLIFyRwBY_4bS-PQZoF0UySdG0sH9VA0bn)
 - Youtube Playlist: [Networking Fundamentals - Practical Networking](https://www.youtube.com/playlist?list=PLIFyRwBY_4bRLmKfP1KnZA6rZbRHtxmXi)
 - Youtube Playlist: [Subnetting Mastery - Practical Networking](https://www.youtube.com/playlist?list=PLIFyRwBY_4bQUE4IB5c4VPRyDoLgOdExE)
-- Youtube video: [Every Networking Concept Explained In 8 Minutes - Privacy Matters](https://www.youtube.com/watch?v=vtUHgkTKju0)
+- Youtube Video: [Every Networking Concept Explained In 8 Minutes - Privacy Matters](https://www.youtube.com/watch?v=vtUHgkTKju0)
 - Youtube Playlist: [PowerCert Animated Videos - Networking Animated Videos](https://www.youtube.com/playlist?list=PL7zRJGi6nMRzg0LdsR7F3olyLGoBcIvvg)
-- Youtube video: [Networking For Hackers! (Common Network Protocols) - Hacker Joe](https://www.youtube.com/watch?v=p3vaaD9pn9I)
-- Youtube video: [Computer Networking Course - Network Engineering [CompTIA Network+ Exam Prep] - freeCodeCamp.org](https://www.youtube.com/watch?v=qiQR5rTSshw)
+- Youtube Video: [Networking For Hackers! (Common Network Protocols) - Hacker Joe](https://www.youtube.com/watch?v=p3vaaD9pn9I)
+- Youtube Video: [Computer Networking Course - Network Engineering [CompTIA Network+ Exam Prep] - freeCodeCamp.org](https://www.youtube.com/watch?v=qiQR5rTSshw)
 
 ## Contributing
 
