@@ -1,6 +1,6 @@
 # Networking Fundamentals Guide
 
-Welcome to this comprehensive guide on networking fundamentals! This guide aims to help you understand the core concepts of computer networking, drawing from practical experience with projects like Docker networking and infrastructure setup.
+Welcome to this comprehensive guide on networking fundamentals! This guide aims to help you understand the core concepts of computer networking, drawing from practical experience.
 
 ## Table of Contents
 
