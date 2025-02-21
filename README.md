@@ -6,101 +6,95 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
 
 - [Networking Fundamentals Guide](#networking-fundamentals-guide)
   - [Table of Contents](#table-of-contents)
-  - [Basic Networking Concepts](#basic-networking-concepts)
-    - [What is a Network?](#what-is-a-network)
-    - [Types of Networks](#types-of-networks)
-        - [1. Based on Size \& Coverage](#1-based-on-size--coverage)
-        - [2. Based on Communication Method](#2-based-on-communication-method)
-        - [3. Based on Architecture](#3-based-on-architecture)
-  - [The OSI Model: Understanding Network Layers](#the-osi-model-understanding-network-layers)
-      - [Layer 7 - Application Layer](#layer-7---application-layer)
-      - [Layer 6 - Presentation Layer](#layer-6---presentation-layer)
-      - [Layer 5 - Session Layer](#layer-5---session-layer)
-      - [Layer 4 - Transport Layer](#layer-4---transport-layer)
-      - [Layer 3 - Network Layer](#layer-3---network-layer)
-      - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
-      - [Layer 1 - Physical Layer](#layer-1---physical-layer)
-    - [How Data Flows Through the OSI Model](#how-data-flows-through-the-osi-model)
-      - [Data Flow Process](#data-flow-process)
-  - [Understanding TCP/IP and OSI Models](#understanding-tcpip-and-osi-models)
-    - [The Four Layers of TCP/IP](#the-four-layers-of-tcpip)
-      - [1. Network Access Layer (Link Layer)](#1-network-access-layer-link-layer)
-      - [2. Internet Layer](#2-internet-layer)
-      - [3. Transport Layer](#3-transport-layer)
-      - [4. Application Layer](#4-application-layer)
-    - [How Data Flows Through TCP/IP](#how-data-flows-through-tcpip)
-    - [TCP/IP vs OSI Model Comparison](#tcpip-vs-osi-model-comparison)
+- [Basic Networking Concepts](#basic-networking-concepts)
+  - [What is a Network?](#what-is-a-network)
+  - [Types of Networks](#types-of-networks)
+      - [1. Based on Size \& Coverage](#1-based-on-size--coverage)
+      - [2. Based on Communication Method](#2-based-on-communication-method)
+      - [3. Based on Architecture](#3-based-on-architecture)
+- [The OSI Model: Understanding Network Layers](#the-osi-model-understanding-network-layers)
+    - [Layer 7 - Application Layer](#layer-7---application-layer)
+    - [Layer 6 - Presentation Layer](#layer-6---presentation-layer)
+    - [Layer 5 - Session Layer](#layer-5---session-layer)
+    - [Layer 4 - Transport Layer](#layer-4---transport-layer)
+    - [Layer 3 - Network Layer](#layer-3---network-layer)
+    - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
+    - [Layer 1 - Physical Layer](#layer-1---physical-layer)
+  - [How Data Flows Through the OSI Model](#how-data-flows-through-the-osi-model)
+    - [Data Flow Process](#data-flow-process)
+- [Understanding TCP/IP and OSI Models](#understanding-tcpip-and-osi-models)
+    - [Layer 1 - Network Access Layer (Link Layer)](#layer-1---network-access-layer-link-layer)
+    - [Layer 2 - Internet Layer](#layer-2---internet-layer)
+    - [Layer 3 - Transport Layer](#layer-3---transport-layer)
+    - [Layer 4 - Application Layer](#layer-4---application-layer)
+  - [How Data Flows Through TCP/IP](#how-data-flows-through-tcpip)
+  - [TCP/IP vs OSI Model Comparison](#tcpip-vs-osi-model-comparison)
       - [Structure](#structure)
       - [Key Differences](#key-differences)
         - [Flexibility and Practical Use](#flexibility-and-practical-use)
         - [Layer Independence](#layer-independence)
         - [Historical Context](#historical-context)
         - [Implementation](#implementation)
-  - [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
-    - [IPv4 vs IPv6](#ipv4-vs-ipv6)
+- [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
+  - [IPv4 vs IPv6](#ipv4-vs-ipv6)
 - [Understanding Public vs Private IP Addresses](#understanding-public-vs-private-ip-addresses)
   - [The Apartment Building Analogy](#the-apartment-building-analogy)
   - [Public IP Addresses](#public-ip-addresses)
   - [Private IP Addresses](#private-ip-addresses)
   - [How They Work Together](#how-they-work-together)
   - [Advantages of This System](#advantages-of-this-system)
-- [Understanding Network Address Translation (NAT)](#understanding-network-address-translation-nat)
-  - [The Core Concept](#the-core-concept)
-- [Understanding DHCP and Network Address Translation](#understanding-dhcp-and-network-address-translation)
+- [Understanding DHCP and Network Address Translation (NAT)](#understanding-dhcp-and-network-address-translation-nat)
   - [DHCP Basics](#dhcp-basics)
   - [The DHCP Process](#the-dhcp-process)
     - [1. DHCP Discovery](#1-dhcp-discovery)
     - [2. DHCP Offer](#2-dhcp-offer)
     - [3. Address Assignment and Configuration](#3-address-assignment-and-configuration)
   - [Network Address Translation (NAT)](#network-address-translation-nat)
-    - [How Private Addresses Reach the Public Internet](#how-private-addresses-reach-the-public-internet)
-    - [Benefits of This System](#benefits-of-this-system)
-  - [How NAT Actually Works](#how-nat-actually-works)
-  - [Types of NAT](#types-of-nat)
-    - [Static NAT](#static-nat)
-    - [Dynamic NAT](#dynamic-nat)
-    - [Port Address Translation (PAT)](#port-address-translation-pat)
-  - [Why NAT is Important](#why-nat-is-important)
-    - [Security](#security)
-    - [IP Address Conservation](#ip-address-conservation)
-    - [Network Flexibility](#network-flexibility)
-  - [Real-World Example](#real-world-example)
-  - [Understanding Subnet Masks](#understanding-subnet-masks)
-  - [Network Devices](#network-devices)
+    - [How NAT Actually Works](#how-nat-actually-works)
+    - [Types of NAT](#types-of-nat)
+      - [Static NAT](#static-nat)
+      - [Dynamic NAT](#dynamic-nat)
+      - [Port Address Translation (PAT)](#port-address-translation-pat)
+    - [Why NAT is Important](#why-nat-is-important)
+      - [Security](#security)
+      - [IP Address Conservation](#ip-address-conservation)
+      - [Network Flexibility](#network-flexibility)
+    - [Real-World Example](#real-world-example)
+- [Network Devices](#network-devices)
     - [Switches: Local Network Connection](#switches-local-network-connection)
     - [Routers: Inter-network Communication](#routers-inter-network-communication)
   - [Routing and Routing Tables](#routing-and-routing-tables)
     - [Destination Field](#destination-field)
     - [Next Hop Field](#next-hop-field)
-  - [Network Address Calculation](#network-address-calculation)
-  - [CIDR Notation](#cidr-notation)
+- [Network Address Calculation](#network-address-calculation)
+- [CIDR Notation](#cidr-notation)
   - [Network Ranges and Host Addresses](#network-ranges-and-host-addresses)
-  - [DNS and Domain Names: The Internet's Phone Book](#dns-and-domain-names-the-internets-phone-book)
+- [DNS and Domain Names: The Internet's Phone Book](#dns-and-domain-names-the-internets-phone-book)
     - [Domain Name System](#domain-name-system)
     - [DNS Hierarchy](#dns-hierarchy)
     - [DNS Record Types](#dns-record-types)
     - [DNS Resolution Process](#dns-resolution-process)
-  - [Network Security: Protecting Your Data](#network-security-protecting-your-data)
+- [Network Security: Protecting Your Data](#network-security-protecting-your-data)
     - [Encryption and Authentication](#encryption-and-authentication)
     - [Firewalls and Access Control](#firewalls-and-access-control)
     - [Security Best Practices](#security-best-practices)
     - [Common Security Threats](#common-security-threats)
-  - [Common Network Tools](#common-network-tools)
+- [Common Network Tools](#common-network-tools)
       - [Diagnostic Tools](#diagnostic-tools)
       - [Monitoring Tools](#monitoring-tools)
-  - [Ressources](#ressources)
-  - [Contributing](#contributing)
+- [Ressources](#ressources)
+- [Contributing](#contributing)
 
 
-## Basic Networking Concepts
+# Basic Networking Concepts
 
-### What is a Network?
+## What is a Network?
 
 A computer network is a collection of interconnected devices that can communicate and share resources with each other. Think of it like a postal system where instead of letters, we're sending digital data packets between computers.
 
-### Types of Networks
+## Types of Networks
 
-##### 1. Based on Size & Coverage
+#### 1. Based on Size & Coverage
 
  - **Personal Area Network (PAN)** – Small-scale network for personal devices (e.g., Bluetooth, Wi-Fi).
  - **Local Area Network (LAN)** – Covers a small area like a home, office, or building (e.g., Ethernet, Wi-Fi).
@@ -108,35 +102,35 @@ A computer network is a collection of interconnected devices that can communicat
  - **Wide Area Network (WAN)** – Covers large geographical areas (e.g., the Internet, corporate networks).
  - **Global Area Network (GAN)** – Connects multiple WANs worldwide (e.g., satellite networks, the Internet).
 
-##### 2. Based on Communication Method
+#### 2. Based on Communication Method
 
  - **Wired Network** – Uses cables (e.g., Ethernet, Fiber optics).
  - **Wireless Network** – Uses radio waves or infrared (e.g., Wi-Fi, cellular networks, satellite).
 
-##### 3. Based on Architecture
+#### 3. Based on Architecture
 
  - **Client-Server Network** – A central server manages clients (e.g., web services, databases).
  - **Peer-to-Peer (P2P) Network** – Devices communicate directly without a central server (e.g., file-sharing networks like BitTorrent).
 
-## The OSI Model: Understanding Network Layers
+# The OSI Model: Understanding Network Layers
 
 The OSI (Open Systems Interconnection) model provides a conceptual framework that helps us understand how network communications work. Think of it as a seven-layer cake, where each layer has a specific role in handling network communications.
 
-#### Layer 7 - Application Layer
+### Layer 7 - Application Layer
 The Application layer is what end-users interact with directly. When you open a web browser or email client, you're working at this layer. It provides networking options to programs running on a computer. Protocols at this layer include:
 - HTTP for web browsing
 - SMTP for email transmission
 - FTP for file transfers
 - SSH for secure remote access
 
-#### Layer 6 - Presentation Layer
+### Layer 6 - Presentation Layer
 Think of the Presentation layer as a translator. It takes data from the Application layer and converts it into a standardized format for transmission. This layer handles:
 - Data encryption and decryption
 - Character code translation (like ASCII to EBCDIC)
 - Data compression
 - Data formatting
 
-#### Layer 5 - Session Layer
+### Layer 5 - Session Layer
 The Session layer manages the connections between applications, much like a phone operator managing calls.
 it uses the ports defined in layer 4 to create sockets and sessions between communicating devices/programs/etc It:
 - Establishes, maintains, and terminates connections
@@ -144,7 +138,7 @@ it uses the ports defined in layer 4 to create sockets and sessions between comm
 - Manages dialogue control between systems
 - Provides synchronization points for long data transfers
 
-#### Layer 4 - Transport Layer
+### Layer 4 - Transport Layer
 The Transport layer ensures complete data transfer via ports, like a postal service's tracking system. Here we find:
 - TCP (Transmission Control Protocol)
   - Connection-oriented
@@ -155,32 +149,32 @@ The Transport layer ensures complete data transfer via ports, like a postal serv
   - Faster but unreliable
   - Used for streaming and gaming
 
-#### Layer 3 - Network Layer
+### Layer 3 - Network Layer
 The Network layer handles routing between different networks, like a mail sorting facility. This is where IP (Internet Protocol) operates, managing:
 - Logical addressing (IP addresses)
 - Route determination between networks
 - Packet forwarding
 - Traffic control
 
-#### Layer 2 - Data Link Layer
+### Layer 2 - Data Link Layer
 The Data Link layer manages direct point-to-point data delivery, like a local courier service. It handles:
 - Physical addressing (MAC addresses)
 - Error detection and correction
 - Flow control between adjacent nodes
 - Access to the physical medium
 
-#### Layer 1 - Physical Layer
+### Layer 1 - Physical Layer
 The Physical layer deals with the actual physical transmission of data, like the roads and vehicles in our postal service analogy. It manages:
 - Electrical signals
 - Cable types and specifications
 - Pin layouts
 - Physical network designs
 
-### How Data Flows Through the OSI Model
+## How Data Flows Through the OSI Model
 
 Let me walk you through how data travels through each layer of the OSI model, focusing on what happens when you send and receive data. I'll use the example of sending an email to make it more concrete.
 
-#### Data Flow Process
+### Data Flow Process
 
 ```plaintext
 Sending Process (Data Encapsulation):
@@ -206,7 +200,6 @@ Sending Process (Data Encapsulation):
 1. Physical Layer: Converts to binary signals
    (Transmits as electrical, light, or radio signals)
 
-
 Receiving Process (Data De-encapsulation):
 
 1. Physical Layer: Receives binary signals
@@ -231,40 +224,38 @@ Receiving Process (Data De-encapsulation):
    (Final data presented to user's email client)
 ```
 
-Each layer adds its own header during encapsulation (sending), and these headers are removed in reverse order during de-encapsulation (receiving). Think of it like putting a letter inside increasingly larger envelopes, each with its own addressing and instructions, then opening them in reverse order at the destination.
+Each layer adds its own header during encapsulation (sending), and these headers are removed in reverse order during de-encapsulation (receiving).
 
-## Understanding TCP/IP and OSI Models
+# Understanding TCP/IP and OSI Models
 
-### The Four Layers of TCP/IP
-
-#### 1. Network Access Layer (Link Layer)
+###  Layer 1 - Network Access Layer (Link Layer)
 This is like the local postal worker who physically delivers mail to your doorstep. It handles the physical transmission of data, including:
 - Converting data into electrical signals, light, or radio waves
 - Managing physical addressing (MAC addresses)
 - Coordinating when devices can transmit on shared media
 - Error detection at the hardware level
 
-#### 2. Internet Layer
+###  Layer 2 - Internet Layer
 Think of this as the national sorting centers that determine the best route for packages. This layer:
 - Handles logical addressing (IP addresses)
 - Routes packets between networks
 - Fragments large messages into smaller packets when needed
 - Implements the Internet Protocol (IP)
 
-#### 3. Transport Layer
+###  Layer 3 - Transport Layer
 This layer acts like the tracking and delivery confirmation system. It provides:
 - End-to-end communication management
 - Reliable data delivery (TCP) or faster, less reliable delivery (UDP)
 - Flow control to prevent overwhelming receivers
 - Error checking and recovery at the protocol level
 
-#### 4. Application Layer
+###  Layer 4 - Application Layer
 This is like the various types of mail services available (regular mail, certified mail, express delivery). It includes:
 - Protocols for specific services (HTTP, FTP, SMTP, etc.)
 - User interfaces and applications
 - Data formatting and encryption
 
-### How Data Flows Through TCP/IP
+## How Data Flows Through TCP/IP
 
 When you send data (like loading a webpage):
 
@@ -288,7 +279,7 @@ Transport Layer: Ensures all segments arrived, orders them correctly
 Application Layer: Presents webpage to user
 ```
 
-### TCP/IP vs OSI Model Comparison
+## TCP/IP vs OSI Model Comparison
 
 Let's compare these two important networking models:
 
@@ -326,11 +317,11 @@ OSI Model (7 Layers)     TCP/IP Model (4 Layers)
 - OSI serves primarily as a reference model for understanding networking
 - TCP/IP protocols are more widely used and supported
 
-## IP Addressing and Network Layer
+# IP Addressing and Network Layer
 
 IP addressing operates at the network layer and provides the fundamental addressing scheme for all internet communications.
 
-### IPv4 vs IPv6
+## IPv4 vs IPv6
 
 IPv4 uses 32-bit addresses, written as four octets (e.g., 192.168.1.1). While IPv4 is still widely used, its approximately 4.3 billion possible addresses are insufficient for modern needs. This led to the development of IPv6, which uses 128-bit addresses and provides an effectively unlimited address space.
 
@@ -385,15 +376,7 @@ This dual-address system provides several benefits:
 3. **Network Management**: Organizations can use consistent internal addressing across different locations
 4. **Flexibility**: You can change your ISP (and public IP) without reconfiguring internal devices
 
-# Understanding Network Address Translation (NAT)
-
-Network Address Translation (NAT) is like having a smart receptionist for your network who knows how to handle both internal and external communications. Let me explain how this fascinating system works and why it's so important.
-
-## The Core Concept
-
-Imagine you're in a large office building where internal phone extensions are just 4 digits (like 1234), but to call the outside world, you need a full phone number. When you dial out, the office phone system automatically adds the necessary area code and prefix. NAT works similarly with IP addresses.
-
-# Understanding DHCP and Network Address Translation
+# Understanding DHCP and Network Address Translation (NAT)
 
 ## DHCP Basics
 DHCP (Dynamic Host Configuration Protocol) plays a crucial role in managing private networks by automatically assigning IP addresses to devices. This process ensures efficient network organization and connectivity.
@@ -414,34 +397,7 @@ After the device accepts the offer, the DHCP server confirms the assignment and 
 
 ## Network Address Translation (NAT)
 
-### How Private Addresses Reach the Public Internet
-When your device needs to communicate with the internet, NAT takes over:
-
-```plaintext
-Internal Request Flow:
-Device (192.168.1.100) → Router → Internet
-                         |
-                         |- Translates private IP to public IP
-                         |- Maintains translation table
-                         |- Tracks ongoing connections
-
-Return Traffic Flow:
-Internet → Router → Device (192.168.1.100)
-           |
-           |- Consults translation table
-           |- Routes response to correct private IP
-```
-
-### Benefits of This System
-This architecture provides several advantages:
-- Security through address hiding
-- Conservation of public IP addresses
-- Simplified internal network management
-- Ability to change internet service providers without reconfiguring internal devices
-
-Would you like me to elaborate on any particular aspect of this system?
-
-## How NAT Actually Works
+### How NAT Actually Works
 
 When a device on your private network wants to communicate with the internet, NAT performs a sophisticated translation process:
 
@@ -463,33 +419,33 @@ When Google responds to 203.0.113.1:5555
 Router checks NAT table and forwards to 192.168.1.100:3333
 ```
 
-## Types of NAT
+### Types of NAT
 
 Different situations call for different types of NAT:
 
-### Static NAT
+#### Static NAT
 Like having a dedicated receptionist for each person. It creates a one-to-one mapping between a private and public IP address. This is often used for servers that need consistent public access.
 
-### Dynamic NAT
+#### Dynamic NAT
 Like having a pool of receptionists who can handle calls as they come in. It maintains a pool of public IP addresses and assigns them as needed to internal devices.
 
-### Port Address Translation (PAT)
+#### Port Address Translation (PAT)
 The most common type in home networks. Think of it as one very efficient receptionist who can handle multiple calls by keeping track of both IP addresses and port numbers. This allows many internal devices to share a single public IP address.
 
-## Why NAT is Important
+### Why NAT is Important
 
 NAT serves several crucial functions in modern networking:
 
-### Security
+#### Security
 By hiding internal IP addresses, NAT creates a natural firewall. Outside systems can't directly initiate connections to internal devices unless specifically configured.
 
-### IP Address Conservation
+#### IP Address Conservation
 Without NAT, we would have run out of IPv4 addresses long ago. By allowing multiple devices to share one public IP, NAT dramatically reduces the number of public IP addresses needed.
 
-### Network Flexibility
+#### Network Flexibility
 Organizations can merge or restructure their internal networks without having to change their public IP addressing scheme.
 
-## Real-World Example
+### Real-World Example
 
 Let's say you're at home with multiple devices:
 1. Your laptop (192.168.1.100) loads a website
@@ -506,7 +462,7 @@ Smart TV        192.168.1.102:5555 →  203.0.113.1:7777
 
 Each device appears to have direct internet access, but NAT is quietly managing all these connections behind the scenes.
 
-## Understanding Subnet Masks
+<!-- # Understanding Subnet Masks
 
 A subnet mask is a 32-bit number that separates the network portion from the host portion of an IP address. Let's work through an example to understand this concept:
 
@@ -529,9 +485,9 @@ Mask:    11111111.11111111.11111111.10000000
 Network: 01101000.11000110.11110001.00000000
 ```
 
-This gives us a network address of 104.198.241.0
+This gives us a network address of 104.198.241.0 -->
 
-## Network Devices
+# Network Devices
 
 ### Switches: Local Network Connection
 
@@ -563,7 +519,7 @@ Routing tables contain essential information for packet forwarding:
 - Must be directly reachable (on the same network)
 - Determines the physical path packets will take
 
-## Network Address Calculation
+# Network Address Calculation
 
 To find a network address, follow these steps:
 
@@ -578,7 +534,7 @@ Mask:    11111111.11111111.11111111.00000000
 Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
 ```
 
-## CIDR Notation
+# CIDR Notation
 
 CIDR (Classless Inter-Domain Routing) provides a more concise way to express subnet masks:
 - Written as a forward slash followed by the number of network bits
@@ -642,7 +598,7 @@ Remember these key points when designing networks:
 - All devices on the same network must use addresses from the same range
 - When connecting to the internet, avoid using private IP addresses
 
-## DNS and Domain Names: The Internet's Phone Book
+# DNS and Domain Names: The Internet's Phone Book
 
 The Domain Name System (DNS) converts human-readable domain names into IP addresses, similar to how a phone book converts names into phone numbers.
 
@@ -677,7 +633,7 @@ When you type a URL in your browser, here's what happens:
 5. DNS server either returns the IP or forwards the request
 6. Once found, the IP is returned and cached
 
-## Network Security: Protecting Your Data
+# Network Security: Protecting Your Data
 
 Network security is crucial in today's interconnected world. Let's explore key security concepts and practices.
 
@@ -725,7 +681,7 @@ Understanding common threats helps in protection:
 - Phishing: Social engineering attacks
 - Malware: Malicious software infiltration
 
-## Common Network Tools
+# Common Network Tools
 
 #### Diagnostic Tools
 - ping: Test connectivity
@@ -740,7 +696,7 @@ Understanding common threats helps in protection:
 - nmap: Network scanning
 
 
-## Ressources
+# Ressources
 
 - Youtube Video: [How We Made the Internet - NationSquid](https://www.youtube.com/watch?v=VPToE8vwKew&t=833s)
 - Youtube Video: [How Does the Internet Work? - Vox](https://www.youtube.com/watch?v=TNQsmPf24go)
@@ -756,6 +712,6 @@ Understanding common threats helps in protection:
 - Youtube Video: [Networking For Hackers! (Common Network Protocols) - Hacker Joe](https://www.youtube.com/watch?v=p3vaaD9pn9I)
 - Youtube Video: [Computer Networking Course - Network Engineering [CompTIA Network+ Exam Prep] - freeCodeCamp.org](https://www.youtube.com/watch?v=qiQR5rTSshw)
 
-## Contributing
+# Contributing
 
 Feel free to contribute to this guide by submitting pull requests or opening issues for any corrections or additions.
