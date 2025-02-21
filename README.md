@@ -52,8 +52,8 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
     - [Next Hop Field](#next-hop-field)
 - [Understanding Public vs Private IP Addresses](#understanding-public-vs-private-ip-addresses)
   - [The Apartment Building Analogy](#the-apartment-building-analogy)
-  - [Public IP Addresses (rework)](#public-ip-addresses-rework)
-  - [Private IP Addresses (rework)](#private-ip-addresses-rework)
+  - [Public IP Addresses](#public-ip-addresses)
+  - [Private IP Addresses](#private-ip-addresses)
   - [How They Work Together](#how-they-work-together)
   - [Advantages of This System](#advantages-of-this-system)
 - [Understanding DHCP and Network Address Translation (NAT)](#understanding-dhcp-and-network-address-translation-nat)
@@ -482,7 +482,7 @@ Let me explain the key differences between public and private IP addresses using
 
 Think of the internet like a city, and each building has its own unique street address (public IP). Inside an apartment building, each apartment has its own internal unit number (private IP). This helps illustrate how our networks work.
 
-## Public IP Addresses (rework)
+## Public IP Addresses
 
 Public IP addresses are like the building's street address - they must be globally unique and visible to everyone. These addresses have several key characteristics:
 
@@ -495,7 +495,7 @@ Key Properties of Public IPs:
 - Can be static (fixed) or dynamic (changing)
 ```
 
-## Private IP Addresses (rework)
+## Private IP Addresses
 
 Private IP addresses are like apartment numbers within a building. They can be reused in different buildings because they're only meaningful within their own network. The Internet Assigned Numbers Authority (IANA) has reserved specific ranges for private use:
 
