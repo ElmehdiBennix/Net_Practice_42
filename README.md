@@ -13,30 +13,29 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
         - [2. Based on Communication Method](#2-based-on-communication-method)
         - [3. Based on Architecture](#3-based-on-architecture)
   - [The OSI Model: Understanding Network Layers](#the-osi-model-understanding-network-layers)
-    - [Layer 7 - Application Layer](#layer-7---application-layer)
-    - [Layer 6 - Presentation Layer](#layer-6---presentation-layer)
-    - [Layer 5 - Session Layer](#layer-5---session-layer)
-    - [Layer 4 - Transport Layer](#layer-4---transport-layer)
-    - [Layer 3 - Network Layer](#layer-3---network-layer)
-    - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
-    - [Layer 1 - Physical Layer](#layer-1---physical-layer)
-- [How Data Flows Through the OSI Model](#how-data-flows-through-the-osi-model)
-  - [Data Flow Process](#data-flow-process)
-- [Understanding TCP/IP and OSI Models](#understanding-tcpip-and-osi-models)
-  - [TCP/IP Model Overview](#tcpip-model-overview)
-  - [The Four Layers of TCP/IP](#the-four-layers-of-tcpip)
-    - [1. Network Access Layer (Link Layer)](#1-network-access-layer-link-layer)
-    - [2. Internet Layer](#2-internet-layer)
-    - [3. Transport Layer](#3-transport-layer)
-    - [4. Application Layer](#4-application-layer)
-  - [How Data Flows Through TCP/IP](#how-data-flows-through-tcpip)
-  - [TCP/IP vs OSI Model Comparison](#tcpip-vs-osi-model-comparison)
-    - [Structure](#structure)
-    - [Key Differences](#key-differences)
-      - [Flexibility and Practical Use](#flexibility-and-practical-use)
-      - [Layer Independence](#layer-independence)
-      - [Historical Context](#historical-context)
-      - [Implementation](#implementation)
+      - [Layer 7 - Application Layer](#layer-7---application-layer)
+      - [Layer 6 - Presentation Layer](#layer-6---presentation-layer)
+      - [Layer 5 - Session Layer](#layer-5---session-layer)
+      - [Layer 4 - Transport Layer](#layer-4---transport-layer)
+      - [Layer 3 - Network Layer](#layer-3---network-layer)
+      - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
+      - [Layer 1 - Physical Layer](#layer-1---physical-layer)
+    - [How Data Flows Through the OSI Model](#how-data-flows-through-the-osi-model)
+      - [Data Flow Process](#data-flow-process)
+  - [Understanding TCP/IP and OSI Models](#understanding-tcpip-and-osi-models)
+    - [The Four Layers of TCP/IP](#the-four-layers-of-tcpip)
+      - [1. Network Access Layer (Link Layer)](#1-network-access-layer-link-layer)
+      - [2. Internet Layer](#2-internet-layer)
+      - [3. Transport Layer](#3-transport-layer)
+      - [4. Application Layer](#4-application-layer)
+    - [How Data Flows Through TCP/IP](#how-data-flows-through-tcpip)
+    - [TCP/IP vs OSI Model Comparison](#tcpip-vs-osi-model-comparison)
+      - [Structure](#structure)
+      - [Key Differences](#key-differences)
+        - [Flexibility and Practical Use](#flexibility-and-practical-use)
+        - [Layer Independence](#layer-independence)
+        - [Historical Context](#historical-context)
+        - [Implementation](#implementation)
   - [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
     - [IPv4 vs IPv6](#ipv4-vs-ipv6)
 - [Understanding Public vs Private IP Addresses](#understanding-public-vs-private-ip-addresses)
@@ -123,21 +122,21 @@ A computer network is a collection of interconnected devices that can communicat
 
 The OSI (Open Systems Interconnection) model provides a conceptual framework that helps us understand how network communications work. Think of it as a seven-layer cake, where each layer has a specific role in handling network communications.
 
-### Layer 7 - Application Layer
+#### Layer 7 - Application Layer
 The Application layer is what end-users interact with directly. When you open a web browser or email client, you're working at this layer. It provides networking options to programs running on a computer. Protocols at this layer include:
 - HTTP for web browsing
 - SMTP for email transmission
 - FTP for file transfers
 - SSH for secure remote access
 
-### Layer 6 - Presentation Layer
+#### Layer 6 - Presentation Layer
 Think of the Presentation layer as a translator. It takes data from the Application layer and converts it into a standardized format for transmission. This layer handles:
 - Data encryption and decryption
 - Character code translation (like ASCII to EBCDIC)
 - Data compression
 - Data formatting
 
-### Layer 5 - Session Layer
+#### Layer 5 - Session Layer
 The Session layer manages the connections between applications, much like a phone operator managing calls.
 it uses the ports defined in layer 4 to create sockets and sessions between communicating devices/programs/etc It:
 - Establishes, maintains, and terminates connections
@@ -145,7 +144,7 @@ it uses the ports defined in layer 4 to create sockets and sessions between comm
 - Manages dialogue control between systems
 - Provides synchronization points for long data transfers
 
-### Layer 4 - Transport Layer
+#### Layer 4 - Transport Layer
 The Transport layer ensures complete data transfer via ports, like a postal service's tracking system. Here we find:
 - TCP (Transmission Control Protocol)
   - Connection-oriented
@@ -156,32 +155,32 @@ The Transport layer ensures complete data transfer via ports, like a postal serv
   - Faster but unreliable
   - Used for streaming and gaming
 
-### Layer 3 - Network Layer
+#### Layer 3 - Network Layer
 The Network layer handles routing between different networks, like a mail sorting facility. This is where IP (Internet Protocol) operates, managing:
 - Logical addressing (IP addresses)
 - Route determination between networks
 - Packet forwarding
 - Traffic control
 
-### Layer 2 - Data Link Layer
+#### Layer 2 - Data Link Layer
 The Data Link layer manages direct point-to-point data delivery, like a local courier service. It handles:
 - Physical addressing (MAC addresses)
 - Error detection and correction
 - Flow control between adjacent nodes
 - Access to the physical medium
 
-### Layer 1 - Physical Layer
+#### Layer 1 - Physical Layer
 The Physical layer deals with the actual physical transmission of data, like the roads and vehicles in our postal service analogy. It manages:
 - Electrical signals
 - Cable types and specifications
 - Pin layouts
 - Physical network designs
 
-# How Data Flows Through the OSI Model
+### How Data Flows Through the OSI Model
 
 Let me walk you through how data travels through each layer of the OSI model, focusing on what happens when you send and receive data. I'll use the example of sending an email to make it more concrete.
 
-## Data Flow Process
+#### Data Flow Process
 
 ```plaintext
 Sending Process (Data Encapsulation):
@@ -234,41 +233,38 @@ Receiving Process (Data De-encapsulation):
 
 Each layer adds its own header during encapsulation (sending), and these headers are removed in reverse order during de-encapsulation (receiving). Think of it like putting a letter inside increasingly larger envelopes, each with its own addressing and instructions, then opening them in reverse order at the destination.
 
-# Understanding TCP/IP and OSI Models
+## Understanding TCP/IP and OSI Models
 
-## TCP/IP Model Overview
-The TCP/IP model, also known as the Internet Protocol Suite, is the fundamental framework that enables internet communications. Think of it as the postal service of the digital world, where each layer handles specific aspects of delivering your data from one point to another.
+### The Four Layers of TCP/IP
 
-## The Four Layers of TCP/IP
-
-### 1. Network Access Layer (Link Layer)
+#### 1. Network Access Layer (Link Layer)
 This is like the local postal worker who physically delivers mail to your doorstep. It handles the physical transmission of data, including:
 - Converting data into electrical signals, light, or radio waves
 - Managing physical addressing (MAC addresses)
 - Coordinating when devices can transmit on shared media
 - Error detection at the hardware level
 
-### 2. Internet Layer
+#### 2. Internet Layer
 Think of this as the national sorting centers that determine the best route for packages. This layer:
 - Handles logical addressing (IP addresses)
 - Routes packets between networks
 - Fragments large messages into smaller packets when needed
 - Implements the Internet Protocol (IP)
 
-### 3. Transport Layer
+#### 3. Transport Layer
 This layer acts like the tracking and delivery confirmation system. It provides:
 - End-to-end communication management
 - Reliable data delivery (TCP) or faster, less reliable delivery (UDP)
 - Flow control to prevent overwhelming receivers
 - Error checking and recovery at the protocol level
 
-### 4. Application Layer
+#### 4. Application Layer
 This is like the various types of mail services available (regular mail, certified mail, express delivery). It includes:
 - Protocols for specific services (HTTP, FTP, SMTP, etc.)
 - User interfaces and applications
 - Data formatting and encryption
 
-## How Data Flows Through TCP/IP
+### How Data Flows Through TCP/IP
 
 When you send data (like loading a webpage):
 
@@ -292,11 +288,11 @@ Transport Layer: Ensures all segments arrived, orders them correctly
 Application Layer: Presents webpage to user
 ```
 
-## TCP/IP vs OSI Model Comparison
+### TCP/IP vs OSI Model Comparison
 
 Let's compare these two important networking models:
 
-### Structure
+#### Structure
 ```plaintext
 OSI Model (7 Layers)     TCP/IP Model (4 Layers)
 7. Application    →      4. Application
@@ -308,28 +304,27 @@ OSI Model (7 Layers)     TCP/IP Model (4 Layers)
 1. Physical       →
 ```
 
-### Key Differences
+#### Key Differences
 
-#### Flexibility and Practical Use
+##### Flexibility and Practical Use
 - TCP/IP is more practical and widely implemented
 - OSI is more theoretical and helps in understanding network concepts
 - TCP/IP combines several OSI layers for efficiency
 
-#### Layer Independence
+##### Layer Independence
 - OSI has clear, separate functions for each layer
 - TCP/IP has some overlapping functions between layers
 - OSI is more rigid, while TCP/IP is more flexible
 
-#### Historical Context
+##### Historical Context
 - TCP/IP was developed first and drove internet development
 - OSI was developed later as a more comprehensive, theoretical model
 - TCP/IP evolved from practical needs, while OSI was designed as an ideal standard
 
-#### Implementation
+##### Implementation
 - TCP/IP is the actual protocol used on the internet
 - OSI serves primarily as a reference model for understanding networking
 - TCP/IP protocols are more widely used and supported
-
 
 ## IP Addressing and Network Layer
 
