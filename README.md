@@ -20,12 +20,6 @@ Welcome to this comprehensive guide on networking fundamentals! This guide aims 
     - [Layer 3 - Network Layer](#layer-3---network-layer)
     - [Layer 2 - Data Link Layer](#layer-2---data-link-layer)
     - [Layer 1 - Physical Layer](#layer-1---physical-layer)
-  - [mac adress](#mac-adress)
-  - [ip adress](#ip-adress)
-  - [ports](#ports)
-  - [sockets](#sockets)
-  - [TCP (Transmission Control Protocol)](#tcp-transmission-control-protocol)
-  - [UDP](#udp)
   - [IP Addressing and Network Layer](#ip-addressing-and-network-layer)
     - [IPv4 vs IPv6](#ipv4-vs-ipv6)
     - [Public vs Private Addressing](#public-vs-private-addressing)
@@ -140,7 +134,7 @@ The Physical layer deals with the actual physical transmission of data, like the
 - Physical network designs
 
 
-## mac adress
+<!-- ## mac adress
 
 ## ip adress
 
@@ -164,6 +158,7 @@ This reliability makes TCP ideal for applications where accuracy is crucial, lik
 ## UDP
 
 
+ -->
 
 
 
@@ -325,6 +320,8 @@ Remember these key points when designing networks:
 - Networks connected to different router interfaces must not overlap
 - All devices on the same network must use addresses from the same range
 - When connecting to the internet, avoid using private IP addresses
+
+
 
 
 
